@@ -1,0 +1,29 @@
+USE k1;
+
+SHOW TABLES;
+
+SELECT *
+FROM article;
+
+테이블 구조 확인
+DESC article;
+
+컬럼에는 제약조건(옵션)을 걸 수 있다.
+중복 불가 제약 -> unique
+NULL 허용 하지 않음 -> not null
+primary key(주키) -> unique + not null
+자동증가 -> auto_increment
+id 컬럼은 데이터를 식별하기 위한 데이터로 중복이 있으면 안되고 반드시 필요한 데이터이다.
+따라서 not null 제약과 unique 제약을 걸어준다.
+id는 숫자 데이터이므로 중복되지 않게 입력할 때마다 자동으로 값이 증가하도록 자동증가 제약을 걸어준다.
+이미 존재하는 컬럼을 수정할 때,
+ALTER TABLE article MODIFY COLUMN id INT NOT NULL AUTO_INCREMENT; # 이미 존재하는 컬럼 수정
+ALTER TABLE article ADD COLUMN id INT UNIQUE; # 새로운 컬럼 추가
+ALTER TABLE article DROP COLUMN id; # 존재하는 컬럼 삭제
+
+최초 테이블 생성할 때,
+CREATE TABLE article2(
+id INT PRIMARY KEY AUTO_INCREMENT, # PRIMARY KEY 제약조건은 UNIQUE + NOT NULL 제약을 합친 것.
+title CHAR(100) NOT NULL, # title과 body도 not null을 붙여주는게 좋다.
+body TEXT NOT NULL
+)
