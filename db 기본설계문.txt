@@ -1,0 +1,101 @@
+
+회사에서 사원을 관리하기 위한 테이블을 만들어보기 -> employee
+
+CREATE TABLE employee(
+employee_number INT PRIMARY KEY,
+employee_name VARCHAR(20) NOT NULL,
+employee_email VARCHAR(50),
+employee_entry_date DATETIME NOT NULL,
+employee_department VARCHAR(50) DEFAULT "미지정",
+employee_rank VARCHAR(20) DEFAULT "사원"
+)
+사원들의 급여를 관리하기 위한 테이블을 만들어보기 -> salary
+
+CREATE TABLE salary(
+employee_number INT,
+basic_salary INT NOT NULL,
+extra_pay INT DEFAULT 0,
+FOREIGN KEY (employee_number)
+REFERENCES employee(employee_number) ON UPDATE CASCADE
+)
+employee 테이블 안에 사원번호 컬럼은 필수로 넣어주시고 이 컬럼을 PK로 설정해주세요.
+
+salary 테이블에도 사원번호 컬럼을 필수로 넣어주시고 이 컬럼을 employee테이블의 사원번호 컬럼을 참조하는 FK로 만들어주세요.
+
+CREATE TABLE salary(
+컬럼~,
+컬럼~,
+FOREIGN KEY (employee_number)
+REFERENCES employee(employee_number) ON UPDATE CASCADE
+)
+
+
+데이터 넣는 INSERT문
+
+INSERT INTO employee SET
+employee_number = 10,
+employee_name = '김부장',
+employee_email = 'ten10@gmail.com',
+employee_entry_date = NOW(),
+employee_department = '영업부',
+employee_rank = '부장';
+INSERT INTO employee SET
+employee_number = 20,
+employee_name = '나대리',
+employee_email = 'twenty20@gmail.com',
+employee_entry_date = NOW(),
+employee_department = '영업부',
+employee_rank = '대리';
+INSERT INTO employee SET
+employee_number = 30,
+employee_name = '박사원',
+employee_email = 'thirty10@gmail.com',
+employee_entry_date = NOW(),
+employee_department = '영업부',
+employee_rank = '사원';
+INSERT INTO employee SET
+employee_number = 100,
+employee_name = '이부장',
+employee_email = 'oneHundred100@gmail.com',
+employee_entry_date = NOW(),
+employee_department = '기술부',
+employee_rank = '부장';
+INSERT INTO employee SET
+employee_number = 200,
+employee_name = '손주임',
+employee_email = 'twoHundred200@gmail.com',
+employee_entry_date = NOW(),
+employee_department = '기술부',
+employee_rank = '주임';
+INSERT INTO employee SET
+employee_number = 40,
+employee_name = '홍사원',
+employee_email = 'forty40@gmail.com',
+employee_entry_date = NOW(),
+employee_department = '영업부',
+employee_rank = '사원';
+
+INSERT INTO salary SET
+employee_number = 10,
+basic_salary = 2500000,
+extra_pay = 2500000;
+INSERT INTO salary SET
+employee_number = 20,
+basic_salary = 2000000,
+extra_pay = 1500000;
+INSERT INTO salary SET
+employee_number = 30,
+basic_salary = 1600000,
+extra_pay = 800000;
+INSERT INTO salary SET
+employee_number = 100,
+basic_salary = 4000000,
+extra_pay = 300000;
+INSERT INTO salary SET
+employee_number = 200,
+basic_salary = 2500000,
+extra_pay = 300000;
+INSERT INTO salary SET
+employee_number = 40,
+basic_salary = 1600000,
+extra_pay = 600000;
